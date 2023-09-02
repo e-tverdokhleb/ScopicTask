@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "310736368532",
+    "project_id": "scopictask-1a712",
+    "storage_bucket": "scopictask-1a712.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310736368532:android:717991247e9beee9e7d581",
+        "android_client_info": {
+          "package_name": "com.scopictask.ys"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310736368532-cnclnfo2mmgckv3e3uh4tg0fk472onpu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEa_S4Twwaujzfs-EAeEHdN0wrcft1Yxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310736368532-cnclnfo2mmgckv3e3uh4tg0fk472onpu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,9 +1,45 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.ScopicTask" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
 
     <style name="Theme.ScopicTask" parent="Base.Theme.ScopicTask" />
+
+    <style name="Base.Theme.ScopicTask" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/lightRed</item>
+        <item name="android:colorAccent">@color/orange</item>
+        <item name="android:colorBackground">@android:color/holo_blue_dark</item>
+        <item name="android:textColor">@color/darkGray</item>
+    </style>
+
+    <style name="CustomSwitchCompat">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorSwitchThumbNormal">@color/lightRed</item>
+        <item name="android:colorForeground">#42FF0C0C</item>
+    </style>
+
+    <style name="Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="TitleRed" parent="Title">
+        <item name="android:textColor">@color/lightRed</item>
+    </style>
+
+    <style name="ButtonPrimary">
+        <item name="backgroundTint">@color/lightRed</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">7dp</item>
+    </style>
+
+    <style name="ButtonPrimaryCancel" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/lightRed</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="cornerRadius">7dp</item>
+    </style>
+
+    <style name="BottomDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">stateHidden|adjustPan</item>
+    </style>
+
 </resources>

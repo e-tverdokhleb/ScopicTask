@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">ScopicTask</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="unexpected_error">Error!</string>
+    <string name="scopic">Scopic</string>
+    <string name="sing_in">Sign In</string>
+    <string name="email">Email</string>
+    <string name="password">password</string>
+    <string name="Password">Password</string>
+    <string name="sing_up">Sign Up</string>
+    <string name="have_an_account">Have an Account?</string>
+    <string name="Welcome">Welcome</string>
+    <string name="hi_there">Hi there! Nice to see You.</string>
+    <string name="list">List</string>
+    <string name="back">Back</string>
+    <string name="Profile">Profile</string>
+    <string name="fab_content_desc">add item</string>
+    <string name="log_out">Log Out</string>
+    <string name="Cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="item_name">Item name</string>
+    <string name="firebase">Firebase</string>
+    <string name="realm">Realm</string>
+    <string name="fields_shouldnt_be_empty">Fields shouldnt be empty</string>
+    <string name="add_item">Add Item</string>
 </resources>
