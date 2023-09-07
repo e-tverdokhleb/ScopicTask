@@ -1,4 +1,4 @@
-package com.scopictask.ys.presentation.utils
+package com.scopictask.ys.presentation.utils.livedata
 
 /*
  *  Copyright 2017 Google Inc.

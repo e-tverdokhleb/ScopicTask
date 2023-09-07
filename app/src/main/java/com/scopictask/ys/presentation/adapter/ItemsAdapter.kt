@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.scopictask.ys.R
 
-class ListAdapter(private val items: MutableList<String> = mutableListOf()) :
-    RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ItemsAdapter(private val items: MutableList<String> = mutableListOf()) :
+    RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView

@@ -12,7 +12,7 @@
         android:paddingStart="@dimen/dimen_30"
         android:paddingTop="@dimen/dimen_48"
         android:paddingEnd="@dimen/dimen_30"
-        tools:context=".presentation.fragments.login.SignInFragment">
+        tools:context=".presentation.fragments.login.signin.SignInFragment">
 
         <TextView
             android:id="@+id/tv_sign_in"

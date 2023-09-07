@@ -1,4 +1,4 @@
-package com.scopictask.ys.presentation.fragments.login
+package com.scopictask.ys.presentation.fragments.login.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.scopictask.ys.R
 import com.scopictask.ys.databinding.FragmentSignUpBinding
 import com.scopictask.ys.presentation.fragments.BaseFragment
+import com.scopictask.ys.presentation.utils.livedata.ActionNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,8 +35,16 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
     }
 
     private fun setObservers() {
-        viewModel.userCreatedSuccessLiveData.observe(viewLifecycleOwner) {
-            navigateToWelcome()
+        viewModel.actionLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                ActionNavigation.ToSignInFragment ->
+                    navigateToSignIn()
+
+                ActionNavigation.ToWelcomeFragment ->
+                    navigateToWelcome()
+
+                else -> {} // no option
+            }
         }
         viewModel.error.observe(viewLifecycleOwner) {
             showErrorMessage(it)
@@ -44,23 +53,22 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
 
     private fun setClickListeners() {
         binding.btnSignUp.setOnClickListener {
-            showLoading(true)
+            showLoading()
             performCreateUser()
         }
         binding.tvSignIn.setOnClickListener {
-            navigateToSignIn()
+            viewModel.action(ActionNavigation.ToSignInFragment)
         }
     }
 
     private fun performCreateUser() {
         val email = binding.etEmail.text.toString()
         val pass = binding.etPassword.text.toString()
+        val validationErrorMessage = getString(R.string.fields_shouldnt_be_empty)
 
-        if (email.isNotEmpty() && pass.isNotEmpty()) {
-            viewModel.createUserWithEmail(email, pass)
-        } else {
-            showSnackBar(getString(R.string.fields_shouldnt_be_empty))
-        }
+        viewModel.createUserWithEmail(
+            email, pass, validationErrorMessage
+        )
     }
 
     private fun navigateToSignIn() {

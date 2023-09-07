@@ -1,11 +1,11 @@
 package com.scopictask.ys.presentation.fragments.list
 
 import androidx.lifecycle.LiveData
-import com.scopictask.ys.presentation.extentions.l
 import com.scopictask.ys.data.repository.RepositoryImpl
 import com.scopictask.ys.domain.repository.Observer
 import com.scopictask.ys.presentation.fragments.BaseViewModel
-import com.scopictask.ys.presentation.utils.SingleLiveEvent
+import com.scopictask.ys.presentation.utils.livedata.ActionNavigation
+import com.scopictask.ys.presentation.utils.livedata.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -21,6 +21,14 @@ class ListViewModel @Inject constructor(
     fun switchToFirebaseStorage(value: Boolean) {
         repository.setFirebaseStorageActive(value)
         _listLiveData.value = repository.getItems()
+    }
+
+    private val _actionLiveData = SingleLiveEvent<ActionNavigation>()
+    val actionLiveData: LiveData<ActionNavigation>
+        get() = _actionLiveData
+
+    fun action(action: ActionNavigation) {
+        _actionLiveData.value = action
     }
 
     fun setRepositoryObserver(observer: Observer) {

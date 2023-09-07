@@ -12,7 +12,7 @@ import com.scopictask.ys.presentation.extentions.l
 const val SCOPIC_DATABASE = "SCOPIC_DATABASE"
 const val SCOPIC_ITEMS = "ITEMS"
 
-class FirebaseRepository : Repository {
+class FirebaseDataSource : Repository {
 
     private var items = mutableListOf<String>()
     private lateinit var observer: Observer
@@ -25,10 +25,6 @@ class FirebaseRepository : Repository {
         this.observer = observer
     }
 
-    override fun getItems(): MutableList<String> {
-        l(items)
-        return items
-    }
 
     private fun setItems(items: MutableList<String>) {
         Firebase.database
@@ -36,6 +32,8 @@ class FirebaseRepository : Repository {
             .child(SCOPIC_ITEMS)
             .setValue(items)
     }
+
+    override fun getItems(): MutableList<String> = items
 
     override fun addItem(message: String) {
         val items = getItems()

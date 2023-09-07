@@ -2,18 +2,12 @@ package com.scopictask.ys.data.repository.realm
 
 import com.scopictask.ys.data.repository.realm.model.Item
 import com.scopictask.ys.domain.repository.Observer
-import com.scopictask.ys.presentation.extentions.l
 import com.scopictask.ys.domain.repository.Repository
 import io.realm.kotlin.MutableRealm
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
-class RealmRepository : Repository {
+class RealmDataSource : Repository {
 
     private lateinit var observer: Observer
 

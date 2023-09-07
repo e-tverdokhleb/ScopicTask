@@ -12,6 +12,7 @@ import com.scopictask.ys.presentation.utils.LoadingView
 
 open class BaseFragment<T : ViewBinding> : Fragment() {
 
+    @Suppress("PropertyName")
     protected var _binding: T? = null
     protected val binding get() = _binding!!
     private var loadingListener: LoadingView? = null

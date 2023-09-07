@@ -13,19 +13,19 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.scopictask.ys.R
 import com.scopictask.ys.databinding.FragmentListBinding
 import com.scopictask.ys.domain.repository.Observer
-import com.scopictask.ys.presentation.adapter.ListAdapter
+import com.scopictask.ys.presentation.adapter.ItemsAdapter
 import com.scopictask.ys.presentation.adapter.SwipeToDeleteCallback
 import com.scopictask.ys.presentation.dialog.DialogAddItem
-import com.scopictask.ys.presentation.extentions.l
 import com.scopictask.ys.presentation.fragments.BaseFragment
 import com.scopictask.ys.presentation.utils.Const.DIALOG_MESSAGE_RESULT
+import com.scopictask.ys.presentation.utils.livedata.ActionNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListFragment : BaseFragment<FragmentListBinding>() {
 
     private val viewModel: ListViewModel by viewModels()
-    private lateinit var listAdapter: ListAdapter
+    private lateinit var listAdapter: ItemsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +42,6 @@ class ListFragment : BaseFragment<FragmentListBinding>() {
 
     override fun onResume() {
         super.onResume()
-        showLoading()
         loadList()
     }
 
@@ -67,16 +66,16 @@ class ListFragment : BaseFragment<FragmentListBinding>() {
             removeItem(adapterPosition)
         }).attachToRecyclerView(binding.rvItems)
 
-        listAdapter = ListAdapter()
+        listAdapter = ItemsAdapter()
         binding.rvItems.adapter = listAdapter
     }
 
     private fun setClickListeners() {
         binding.tvProfile.setOnClickListener {
-            navigateToProfile()
+            viewModel.action(ActionNavigation.ToProfileFragment)
         }
         binding.btnBack.setOnClickListener {
-            navigateToWelcome()
+            viewModel.action(ActionNavigation.ToWelcomeFragment)
         }
         binding.btnFloat.setOnClickListener {
             showAddItemDialog()
@@ -94,29 +93,35 @@ class ListFragment : BaseFragment<FragmentListBinding>() {
         }
         viewModel.setRepositoryObserver(object : Observer {
             override fun observer(list: MutableList<String>) {
-                hideLoading()
                 listAdapter.updateList(list)
             }
         })
         viewModel.listLiveData.observe(viewLifecycleOwner) {
-            hideLoading()
             listAdapter.updateList(it)
+        }
+        viewModel.actionLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is ActionNavigation.ToProfileFragment ->
+                    navigateToProfile()
+
+                is ActionNavigation.ToWelcomeFragment ->
+                    navigateToWelcome()
+
+                else -> {} // no option
+            }
         }
     }
 
     private fun switchStorage(isFirebase: Boolean) {
-        showLoading()
         viewModel.switchToFirebaseStorage(isFirebase)
         updateDatabaseLabel(isFirebase)
     }
 
     private fun addItem(message: String) {
-        showLoading()
         viewModel.addItem(message)
     }
 
     private fun removeItem(position: Int) {
-        showLoading()
         viewModel.removeItem(position)
     }
 

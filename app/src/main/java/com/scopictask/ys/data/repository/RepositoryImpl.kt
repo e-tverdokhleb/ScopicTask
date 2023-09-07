@@ -1,20 +1,15 @@
 package com.scopictask.ys.data.repository
 
-import com.scopictask.ys.data.repository.firebase.FirebaseRepository
-import com.scopictask.ys.data.repository.realm.RealmRepository
 import com.scopictask.ys.domain.repository.Observer
 import com.scopictask.ys.domain.repository.Repository
-import com.scopictask.ys.presentation.extentions.l
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
+import javax.inject.Named
 
 class RepositoryImpl @Inject constructor(
-    private val firebaseRepository: FirebaseRepository,
-    private val realmRepository: RealmRepository,
+    @Named("firebase")
+    private val firebaseDataSource: Repository,
+    @Named("realm")
+    private val realmDataSource: Repository,
 ) : Repository {
 
     private var isFirebaseActive = true
@@ -24,22 +19,22 @@ class RepositoryImpl @Inject constructor(
     }
 
     override fun setObserver(observer: Observer) {
-        realmRepository.setObserver(observer)
-        firebaseRepository.setObserver(observer)
+        realmDataSource.setObserver(observer)
+        firebaseDataSource.setObserver(observer)
     }
 
     override fun addItem(message: String) {
-        if (isFirebaseActive) firebaseRepository.addItem(message)
-        else realmRepository.addItem(message)
+        if (isFirebaseActive) firebaseDataSource.addItem(message)
+        else realmDataSource.addItem(message)
     }
 
     override fun removeItem(position: Int) {
-        if (isFirebaseActive) firebaseRepository.removeItem(position)
-        else realmRepository.removeItem(position)
+        if (isFirebaseActive) firebaseDataSource.removeItem(position)
+        else realmDataSource.removeItem(position)
     }
 
     override fun getItems(): MutableList<String> {
-        return if (isFirebaseActive) firebaseRepository.getItems()
-        else realmRepository.getItems()
+        return if (isFirebaseActive) firebaseDataSource.getItems()
+        else realmDataSource.getItems()
     }
 }

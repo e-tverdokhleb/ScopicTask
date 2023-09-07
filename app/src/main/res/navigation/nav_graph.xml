@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.scopictask.ys.presentation.fragments.login.SignInFragment"
+        android:name="com.scopictask.ys.presentation.fragments.login.signin.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in">
         <action
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.scopictask.ys.presentation.fragments.login.SignUpFragment"
+        android:name="com.scopictask.ys.presentation.fragments.login.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up">
         <action
@@ -40,9 +40,9 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.scopictask.ys.presentation.fragments.login.WelcomeFragment"
+        android:name="com.scopictask.ys.presentation.fragments.login.welcome.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
+        tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_listFragment"
             app:destination="@id/listFragment" />
